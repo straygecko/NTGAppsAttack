@@ -1,0 +1,108 @@
+                       NTGAppsAttack
+               Nook Touch Google Apps Attack
+Google Apps for Nook Simple Touch & Nook Simple Touch Glow
+Rooted with NookManager and running Firmware 1.2.0+
+
+Support thread: http://forum.xda-developers.com/showthread.php?t=2086582
+
+** Warning **
+I have tested this on my Nook Simple Touch.  It works for me.  I think it will work for you.
+But it might not.  It might brick your Nook.
+You must root your Nook using NookManager before installing NTGAppsAttack
+Using NTGAppsAttack on a Nook rooted using any other method will probably break some stuff you like.
+Maybe even your Nook.
+I haven't tested this on a Nook Simple Touch Glow.  But the XDA forum talk is that it
+runs the same firmware as the Nook Simple Touch from 1.2.0 forward.  NookManager roots a NSTG same as
+a NST and all seems rosy.  So I assume NTGAppsAttack will work fine on a NSTG.  But it might not.  
+Install at your own risk.
+** Warning ** 
+
+** Important **
+Your version number of NTGappsAttack should match the version of NookManager you are using as
+NTGappsAttack replaces a file that is patched by NookManager.  If your versions don't match
+things might not work when you're done.  Updates to NTGappsAttack for the same version of
+NookManager will add a suffix to the NookManager version.  For example the first NTGAppsAttack
+release for NookManger version 0.5.0 is NTGppsAttack version 0.5.0.  An update to NTGappsAttack
+for NookManager 0.5.0 will be NTGppsAttack version 0.5.0.1 or 0.5.0.2, etc.
+** Important **
+
+
+** Important **
+** Important **
+** Important **
+Make a backup before you get started!  NookManager makes it easy.  Thanks jeff_kz!
+Make a backup before you get started!  NookManager makes it easy.  Thanks jeff_kz!
+Make a backup before you get started!  NookManager makes it easy.  Thanks jeff_kz!
+** Important ** 
+** Important ** 
+** Important ** 
+
+-1. Make sure your NookManager and NTGAppsAttack versions match (see above).
+ 0. Make sure your have rooted your Nook with NookManager and all is working correctly.
+ 1. Unzip this file into the the root of your NookManager microSD card
+ 2. Power off your Nook
+ 3. Insert NookManager microSD card into your Nook
+ 4. Power on your Nook and let NookManager load
+ 5. From the main NookManager screen select More, then Custom, then Install NTGappsAttack
+ 6. If all goes well, select Back, Back, Exit, eject your microSD card and let your Nook boot
+
+** Important **
+Once your Nook has booted you need to follow the next steps without delay.  You don't need to rush
+but you need to move through them without interruption.  Your Nook will be downloading an update 
+to the Market while you are doing these steps.  You need to be done before the update is installed.
+Otherwise when you open the Market you'll get a "server error" message.  If that happens tap Cancel
+on the message and the Market will close.  Go back to ReLaunch.  Long press on the Market and select
+Uninstall and let it uninstall the update.  When its done Market will still be there in ReLaunch.
+Immediately open the Market and pick up at step 14 again.  And don't get interrupted this time. :)
+** Important ** 
+
+ 7. Touch the Android to begin
+ 8. Skip the tutorial
+ 9. Tap Sign In
+10. Enter your gmail account and password and tap Sign In
+11. Leave location tracking boxes checked and tap Next
+12. Uncheck Backup Settings to My Google Account box and tap Finish (You can try leaving backup
+    checked but I haven't tested it as I use Titanium Backup)
+13. Go back to ReLaunch and open the Market
+14. Accept the Terms & Conditions
+15. Tap on Apps
+16. Tap on All applications
+17. Tap on Top Free
+18. Tap on one of the Apps and install it.  Any one of them, it doesn't matter which, you can uninstall it later.
+19. Exit the Market.
+20. You're not quite done yet.  Keep reading.
+
+This gets the process of connecting your Nook with the Google Market servers going.
+At this point you are hooked up with Gmail, Contacts and Calendar syncing to your Nook.
+Try Gmail and Calendar out. You'll see your appointments in the Calendar and contacts in Gmail but the Contacts
+app isn't installed because it doesn't work on the NST/NSTG.  Try Go Contacts EX once the Market is up and working.
+Now you need to take a break to let Google's servers get all cozy with your Nook before the Market will
+work properly.  For me it usually takes less than an hour but it might take longer.  As long as 24 hours+ has been
+reported for other GApps install methods.  I think the installing of the free app speeds things up so I
+don't think you'll have to wait that long.
+
+To see if the Market is ready:
+- Go to http://play.google.com
+- Search for SearchMarket
+- Click on Install
+- Open the Send To dropdown.  You should see a device called "phone".  Thats your Nook.  Select it and click Install.
+  If it responds "the app will be downloaded to your device shortly" your Nook and Google have cozied up nicely.
+  If you dont't see "phone", it won't let you select "phone" or gives you an "Oops we had trouble with this request"
+  error when you click install you need to wait longer.  Once it says it will be downloaded, back on your Nook open
+  the Market again.  It should look different.  You've been automagically upgraded to the most current version of
+  the Market app supported on our Nooks.  It supports in-app purchases if you care.  You should see a notification
+  balloon in your status bar. Tap on it and the message should say SearchMarket has been installed.  Now you can
+  use SearchMarket on your Nook to find apps and install them (search in the Market app is broken).
+  If you don't get the installed notification open Market continue on.
+- Open the Market on your Nook.
+- Tap on My Apps.
+- Tap on SearchMarket to install it.
+
+
+Missing/Broken stuff:
+Market Search doesn't work - Use SearchMarket from the Market per above instructions
+No Contacts app - try Go Contacts EX from the Market - default and iPhone themes are decent on our eInk displays
+No Google Books - try older Google Books @goodereader.com - http://apps.goodereader.com/wp-content/uploads/downloads/2012/02/gb152.apk
+No YouTube, Maps, etc. - download them from the Market
+How to change sync settings - Go into Gmail, open the menu and tap on Add Account.  Add your same Google account again and you'll
+get a screen that will let you select what you want synced.  Don't worry, it won't really add the account twice.

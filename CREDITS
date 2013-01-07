@@ -1,0 +1,38 @@
+A big thanks to everyone on XDA who help us all root our devices and get
+them to do the things the manufacturers should have let us do in the 
+first place.
+
+Most of this work is based on the work of others who got gapps working on the
+Nook Color and earlier firmware of the NST & NSTG.
+
+First off, thanks to jeff_kz and his NookManager that made it so easy to root my NST.
+http://forum.xda-developers.com/showthread.php?t=2040351
+
+I can't remember all the threads I read while getting this project put together
+but here are the key ones that unlocked the mysteries of gapps for me - many from the
+Nook Color where the orignal work was done and later applied to the NST:
+
+GabrialDestruir - TouchNooter http://forum.xda-developers.com/showthread.php?t=1132693
+GabrialDestruir - GlowNooter http://forum.xda-developers.com/showthread.php?t=1675706
+Decad3nce - doc of how to patch framework.jar http://forum.xda-developers.com/showthread.php?t=955847
+clockworx - original development of framework.jar patch http://forum.xda-developers.com/showthread.php?t=877752
+Mistar Muffin - getting gapps to work on Nook Color http://forum.xda-developers.com/showthread.php?p=9749902
+nookdevs - nook color calendar sync / how to get to account & sync settings http://nookdevs.com/NookColor_Issues
+
+And special thanks to CyanogenMod and their archive of old gapps files. http://wiki.rootzwiki.com/Google_Apps
+
+My additions to this prior work are:
+- Patch to server.jar to start Backup Manager which gets the setup wizard working
+  and eliminates the YouTube-Gmail dance
+- adding in MarketUpdater.apk and finding version of MarketUpdater.apk and
+  vending.apk that are signed by same certificate so that Market updates itself
+- Using awk to patch framework.jar so that the patch won't need to be manually
+  redone for new firmware versions when line numbers and labels change in
+  the smali
+- sed in the install to remove shared user certs from packages.xml  I can't remember what
+  wasn't installing right that caused me to add that and looking at a packages.xml after
+  an install of NTgappsAttack the new cert(s) aren't added back so it may have been a particular
+  set of gapps .apk's I was testing at one time and it may not be needed any more.  But it won't
+  hurt either.
+- The build system that pulls everything together and creates the distribution zip file.
+- The custom menu and script for NookManager to do the install

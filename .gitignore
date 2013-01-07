@@ -1,0 +1,14 @@
+# Ignore distribution files
+/*.zip
+# ignore backup copies
+/*.bak
+# Ignore build tool binaries
+/bin/*
+# Ignore files created by build but not distributed
+/custom/NTGAppsAttack.CREDITS
+/custom/files/NTGAppsAttack/*
+/custom/menu/NTGappsAttack.VERSION
+# Ignore temporary files used by patching process
+/patchwork/*
+# Ignore firmware files, etc. used for build
+/zips/*

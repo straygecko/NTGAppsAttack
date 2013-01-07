@@ -1,0 +1,72 @@
+SCRIPT=/tmp/sdcache/scripts
+FILES=/sdcard/custom/files/NTGAppsAttack
+
+mount -t vfat /dev/block/mmcblk1p1 /sdcard
+$SCRIPT/mount_nook
+
+# Check Nook Touch firmware version
+SYSTEM=`grep ro.build.version.incremental /nook/system/build.prop | cut -d "=" -f 2`
+
+if [ ! -d $FILES/$SYSTEM && ! -d $FILES/${SYSTEM%.*} ]; then
+
+  echo "Google Apps not available for\nNook Touch firmware $SYSTEM"
+  umount /sdcard
+  $SCRIPT/umount_nook
+  retcode=1
+
+else
+
+  echo Install started `date +%H:%M:%S`
+
+  #install gapps files - removed unneeded stuff - see $FILES/leftovers for stuff not installed
+  cp -r $FILES/gapps/* /nook
+  rm /nook/system/app/GoogleSearch.apk
+  rm /nook/system/app/Provision.apk
+
+  #install patched framework.jar that spoofs a valid phone type and ID so that Google will assign an Android ID
+  #install patched services.jar that starts the backup manager service so the setup wizard works
+  [ -f /nook/system/framework/framework.jar.gappsorig ] || cp /nook/system/framework/framework.jar /nook/system/framework/framework.jar.gappsorig
+  [ -f /nook/system/framework/services.jar.gappsorig ] || cp /nook/system/framework/services.jar /nook/system/framework/services.jar.gappsorig
+  if [ -d $FILES/$SYSTEM ]; then
+    cp -r $FILES/$SYSTEM/* /nook        # use specific version files if exists (e.g. 1.2.0)
+  else
+    cp -r $FILES/${SYSTEM%.*}/* /nook   # use general version files otherwise (e.g. 1.2)
+  fi
+
+  #enable sending usage data to get market app talking with google servers and
+  #modify system fingerprint to allow access to protected apps in market
+  [ -f /nook/system/build.prop.orig ] || cp /nook/system/build.prop /nook/system/build.prop.orig
+  sed "/nocheckin/d" /nook/system/build.prop >   /tmp/build.prop
+  echo ro.config.nocheckin=no >>  /tmp/build.prop
+  sed "s/^.*ro.build.fingerprint.*$/ro\.build\.fingerprint=verizon\/voles\/sholes\/sholes:2\.1-update1\/ESE81\/29593:user\/release-keys/" /tmp/build.prop > /nook/system/build.prop
+  rm /tmp/build.prop
+
+  # clear signatures for system packages so new / replaced package signatures will be allowed
+  [ -f /data/system/packages.xml.orig ] || cp /data/system/packages.xml /data/system/packages.xml.orig
+  sed "1,/uid.system/!{ /<perms>/,/uid.system/!d; }" /data/system/packages.xml > /tmp/packages.xml
+  sed "1,/uid.shared/!{ /<perms>/,/uid.shared/!d; }" /tmp/packages.xml > /data/system/packages.xml
+  rm /tmp/packages.xml
+
+  # Set file ownership & permissions
+  chown root.root /nook/system/app/*
+  chmod 644 /nook/system/app/*
+  chown root.root /nook/system/etc/permissions/*
+  chmod 644 /nook/system/etc/permissions/*
+  chown root.root /nook/system/framework/*
+  chmod 644 /nook/system/framework/*
+  chown root.root /nook/system/lib/*.so
+  chmod 644 /nook/system/lib/*.so
+
+  # Clear dalvik cache
+  rm -R /data/dalvik-cache/*
+
+  echo Install complete `date +%H:%M:%S`
+  retcode=0
+
+fi
+
+sync
+umount /sdcard
+$SCRIPT/umount_nook
+
+exit $retcode
